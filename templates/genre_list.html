@@ -1,0 +1,144 @@
+{% extends 'base.html'%}
+{% block body%}
+    <header>
+        <div class="logo"><a href="#">F<span class="tip">ERRY</span>MUZIC</a></div>
+        <div class="search"><input type="text" id="searchItem"><i class="fa fa-search" id="myBtn"></i></div>
+</header>
+<nav>
+    <ul>
+        <li><a href="/">TRENDING</a></li>
+        <li><a href="/genre">GENRE</a></li>
+        <li><a href="/songs">SONGS</a></li>
+        <li><a href="/artist">ARTIST</a></li>
+    </ul>
+</nav>
+<button onclick="openFullscreen()">full screen</button>
+	<!-- Blue Playlist Container -->
+    <div id="blue-playlist-container" >
+
+<button onclick="closeFullscreen()">exit screen</button>
+        <!-- Amplitude Player -->
+        <div id="amplitude-player">
+
+            <!-- Left Side Player -->
+            <div id="amplitude-left">
+                <div id="lyricer">
+                </div>
+                <canvas id="mainCanvas" style="display: none;"></canvas>
+                <!-- <img data-amplitude-song-info="cover_art_url"/> -->
+                <div id="player-left-bottom">
+                    <div id="time-container">
+                        <span class="current-time">
+                            <span class="amplitude-current-minutes" ></span>:<span class="amplitude-current-seconds"></span>
+                        </span>
+                        <div id="progress-container">
+                            <input type="range" class="amplitude-song-slider"/>
+                            <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
+                            <progress id="song-buffered-progress" class="amplitude-buffered-progress" value="0"></progress>
+                        </div>
+                        <span class="duration">
+                            <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
+                        </span>
+                    </div>
+
+                    <div id="control-container">
+                        <div id="repeat-container">
+                            <div class="amplitude-repeat" id="repeat"></div>
+                            <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle"></div>
+                        </div>
+
+                        <div id="central-control-container">
+                            <div id="central-controls">
+                                <div class="amplitude-prev" id="previous"></div>
+                                <div class="amplitude-play-pause" id="play-pause"></div>
+                                <div class="amplitude-next" id="next"></div>
+                            </div>
+                        </div>
+
+                        <div id="volume-container">
+                            <div class="volume-controls">
+                                <div class="amplitude-mute amplitude-not-muted"></div>
+                                <input type="range" class="amplitude-volume-slider"/>
+                                <div class="ms-range-fix"></div>
+                            </div>
+                            <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle-right"></div>
+                        </div>
+                    </div>
+
+                    <div id="meta-container">
+                        <span data-amplitude-song-info="name" class="song-name"></span>
+
+                        <div class="song-artist-album">
+                            <span data-amplitude-song-info="artist"></span>
+                            <span data-amplitude-song-info="album"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Left Side Player -->
+
+            <!-- Right Side Player -->
+            <div id="amplitude-right">
+                 {% for row in result: %}
+                <div class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="{{ loop.index-1 }}">
+                    <div class="song-now-playing-icon-container">
+                        <div class="play-button-container">
+
+                        </div>
+                        <img class="now-playing" src="../static/img/now-playing.svg"/>
+                    </div>
+                    <div class="song-meta-data">
+                        <span class="song-title">{{row.2}}</span>
+                        <span class="song-artist">{{row.1}}</span>
+                    </div>
+                    <a href="/songs/{{row.0}}" class="bandcamp-link" target="_blank">
+                        <!-- <img class="bandcamp-grey" src="./img/bandcamp-grey.svg"/> -->
+                        <img class="bandcamp-white" src="../static/img/bandcamp-white.svg"/>
+                    </a>
+                    <span class="song-duration">3:16 </span>
+                </div>
+                <input type="hidden" value="{{row.5}}" id="song">
+                {%endfor%}
+            </div>
+            <!-- End Right Side Player -->
+        </div>
+        <!-- End Amplitdue Player -->
+        <div id="audio">
+  
+        </div>
+    </div>
+    
+<footer>
+    <div class="icon">
+        <div class="icon-items"><i class="fa fa-facebook"></i></div> 
+        <div class="icon-items"><i class="fa fa-twitter"></i></div> 
+        <div class="icon-items"><i class="fa fa-instagram"></i></div> 
+    </div>
+</footer>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Preloader -->
+    <div id="loader-wrapper" >
+      <div id="loader"></div>
+  </div>
+     <!-- Modal content -->
+     <div class="modal-content" style="display: none;">
+       <div class="modal-header">
+           <div class="header-button close">
+              <i class="fa fa-close"></i>
+           </div>
+       </div>
+       <div class="search-query">
+          <div class="empty" style="display: none;"> 
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#FF0066" d="M48.5,-63.4C59.2,-48.7,62,-30.1,64.6,-11.8C67.3,6.4,69.9,24.1,64.2,39.8C58.4,55.5,44.3,69.2,29.6,69.5C14.8,69.7,-0.5,56.6,-19,50.6C-37.5,44.5,-59.1,45.6,-64.2,37C-69.3,28.3,-57.8,10.1,-50.1,-4.4C-42.3,-19,-38.2,-29.8,-30.4,-45C-22.7,-60.2,-11.4,-79.8,3.7,-84.2C18.8,-88.7,37.7,-78,48.5,-63.4Z" transform="translate(100 100)" />
+                </svg>
+                <h2>No Such record found</h2>
+          </div>
+       </div>
+     </div>
+   
+   </div>  
+<script type="text/javascript" src="{{ url_for('static', filename='js/genre.js') }}" ></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" ></script>
+{%endblock%}

@@ -1,0 +1,138 @@
+/* Scearch Modal */
+     /* The Modal (background) */
+     .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      z-index: 9999999999;
+    }
+    
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #eee;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 0px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+    }
+    
+    /* The Close Button */
+    /* .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }  */
+.search-query{
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+margin: 0px 20px 0px 20px;
+}
+.search-query a:nth-child(1){
+text-decoration: none;
+color: black;
+}
+    .search-content{
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    .search-artist{
+      display: flex;
+      cursor: pointer;
+    }
+
+    .search-image img{
+      margin-right: 10px;
+      width: 100px;
+      height: 100px;
+    }
+    .search-text{
+      display: block;
+      width: 80%;
+    }
+    .search-text h1{
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+.search-text p{
+margin-top: 0px;
+margin-bottom: 0px;
+white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100%;
+}
+.search-text a{
+display: inline-block;
+margin-top: 0px;
+margin-bottom: 0px;
+white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 80%;
+}
+.empty{
+text-align: center;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+color: #f827;
+}
+.empty svg{
+height: 20rem;
+}
+@media (max-width: 600px){
+.search-text p{
+  width: 60%;
+}
+}
+/* new modal */
+.modal-header{
+position: relative;
+width: 100%;
+height: 2rem;
+background: #eee;
+border: 1px solid #f7f7f7;
+      box-shadow: inset 7px 7px 17px #fff,
+      inset -7px -7px 17px rgba(70,70,70,0.15);
+}
+.header-button{
+text-align: center;
+width: 30px;
+height: 100%;
+/* border-radius: 20px; */
+position: relative;
+left: 100%;
+transform: translateX(-100%);
+border: 1px solid #f7f7f7;
+              border-radius: 50%;
+      box-shadow: inset 7px 7px 17px #fff,
+      inset -7px -7px 17px rgba(70,70,70,0.15);
+}
+.header-button i{
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%,-50%);
+color: #23abff;
+box-shadow:   -7px -7px 17px #fff,
+ 7px 7px 17px rgba(70,70,70,0.15);
+}
+.header-button i :hover{
+box-shadow:  inset -7px -7px 17px #fff,
+ inset 7px 7px 17px rgba(70,70,70,0.15);
+}
